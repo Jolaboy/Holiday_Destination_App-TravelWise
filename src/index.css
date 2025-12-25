@@ -1,0 +1,232 @@
+/* =========================================
+   Global Styles & Bootstrap Overrides
+   ========================================= */
+
+/* 
+   Main Body Styling
+   - Sets a fixed gradient background that covers the full viewport
+   - Uses system fonts with Inter as preference
+   - Prevents horizontal overflow
+*/
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+  color: #f8f9fa; /* Bootstrap light */
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   Glassmorphism Utilities
+   Creates a frosted glass effect using backdrop-filter
+   ========================================= */
+
+/* Navbar specific glass effect */
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* General card glass effect with border */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* =========================================
+   Animations & Transitions
+   ========================================= */
+
+/* Fade In Animation - Used for page content entry */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Hover Scale Effect - Used for interactive elements */
+.scale-hover {
+  transition: transform 0.2s;
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+}
+
+/* =========================================
+   Custom Scrollbar
+   Styled to match the dark/glass theme
+   ========================================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Component Styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* PhotoCard Hover Effects */
+.photo-card-container .photo-card-overlay,
+.photo-card-container .photo-card-info,
+.photo-card-container .photo-card-hint {
+  opacity: 0;
+}
+
+.photo-card-container:hover .photo-card-overlay,
+.photo-card-container:hover .photo-card-info,
+.photo-card-container:hover .photo-card-hint {
+  opacity: 1;
+}
+
+.photo-card-container img {
+  transition: transform 0.5s ease;
+}
+
+.photo-card-container:hover img {
+  transform: scale(1.05);
+}
+
+  /* Prevent hover effects on touch devices to avoid overflow */
+  @media (hover: none) and (pointer: coarse) {
+    .hover-lift:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+  
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+  
+  /* Container constraints to prevent overflow */
+  .safe-container {
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+  
+  /* Scale effects with overflow prevention */
+  .scale-hover {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+  }
+  
+  .scale-hover:hover {
+    transform: scale(1.02); /* Reduced from 1.05 to prevent overflow */
+  }
+  
+/* Mobile-safe scaling */
+@media (max-width: 768px) {
+  .scale-hover:hover {
+    transform: scale(1.01); /* Even smaller scale on mobile */
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-1px); /* Minimal lift on mobile */
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; }
+  html, body { 
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #ffffff;
+  }
+  button { background-color: #121212; }
+  a:hover { color: #747bff; }
+}
+
